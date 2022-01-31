@@ -1,38 +1,36 @@
 //
-//  ViewController.swift
+//  EventTableViewController.swift
 //  WoopSicredi
 //
-//  Created by André on 29/01/22.
+//  Created by André on 30/01/22.
 //
 
 import UIKit
 
-class EventViewController: UITableViewController {
-    let cellIdentifier = "EventCell"
+class EventViewController: UIViewController {
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UITextView!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var longitudeLabel: UILabel!
+    @IBOutlet weak var latitudeLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     
-    private var events = [Event]()
+    var event: Event?
+    var eventViewModel = EventViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellIdentifier)
-        EventViewModel().fetchEvents { [weak self] (events) in
-            self?.events = events
-            DispatchQueue.main.async {
-                self?.tableView.reloadData()
-            }
+        if let event = event {
+            title = event.title
+            dateLabel.text = eventViewModel.convertDate(date: event.date)
+            descriptionLabel.text = event.description
+            imageView.image = APIService().getImageFromURL(event.image)
+            longitudeLabel.text = String(event.longitude)
+            latitudeLabel.text = String(event.longitude)
+            priceLabel.text = String(event.price)
+            
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        events.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         
-        cell.textLabel!.text = events[indexPath.row].id
-        
-        return cell
     }
 }
-
