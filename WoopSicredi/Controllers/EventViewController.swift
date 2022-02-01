@@ -17,19 +17,12 @@ class EventViewController: UIViewController {
     
     var event: Event?
     let eventViewModel = EventViewModel()
+    let apiService = APIService.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let event = event {
-            title = event.title
-            dateLabel.text = eventViewModel.convertDate(event.date)
-            descriptionLabel.text = event.description
-            imageView.image = eventViewModel.getImageFromURL(event.image)
-            longitudeLabel.text = String(event.longitude)
-            latitudeLabel.text = String(event.latitude)
-            priceLabel.text = eventViewModel.formatPrice(event.price)
-        }
+        setEventValuesToFields()
     }
     
     @IBAction func didTapCheckInButton() {
@@ -56,6 +49,18 @@ class EventViewController: UIViewController {
         if segue.identifier == "CheckIn" {
             let controller = segue.destination as! CheckInViewController
             controller.eventId = sender as? String
+        }
+    }
+    
+    func setEventValuesToFields() {
+        if let event = event {
+            title = event.title
+            dateLabel.text = eventViewModel.convertDate(event.date)
+            descriptionLabel.text = event.description
+            imageView.image = apiService.getImageFromURL(event.image)
+            longitudeLabel.text = String(event.longitude)
+            latitudeLabel.text = String(event.latitude)
+            priceLabel.text = eventViewModel.formatPrice(event.price)
         }
     }
 }

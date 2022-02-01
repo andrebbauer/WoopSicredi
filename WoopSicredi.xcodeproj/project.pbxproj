@@ -20,6 +20,7 @@
 		65B2C33F27A8C13900D6D134 /* CheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2C33E27A8C13900D6D134 /* CheckInViewController.swift */; };
 		65B2C34127A8CE0500D6D134 /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2C34027A8CE0500D6D134 /* CheckIn.swift */; };
 		65B2C34327A8DA0A00D6D134 /* CheckInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2C34227A8DA0A00D6D134 /* CheckInViewModel.swift */; };
+		65DEC5B727A992E700035E48 /* AllEventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65DEC5B627A992E700035E48 /* AllEventsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		65B2C33E27A8C13900D6D134 /* CheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInViewController.swift; sourceTree = "<group>"; };
 		65B2C34027A8CE0500D6D134 /* CheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIn.swift; sourceTree = "<group>"; };
 		65B2C34227A8DA0A00D6D134 /* CheckInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInViewModel.swift; sourceTree = "<group>"; };
+		65DEC5B627A992E700035E48 /* AllEventsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllEventsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 		658DC98127A57C180068DECF /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				65DEC5B627A992E700035E48 /* AllEventsViewModel.swift */,
 				65B2C33827A892F000D6D134 /* EventViewModel.swift */,
 				65B2C34227A8DA0A00D6D134 /* CheckInViewModel.swift */,
 			);
@@ -217,6 +220,7 @@
 			files = (
 				658DC98427A57C490068DECF /* Event.swift in Sources */,
 				658DC97127A57C010068DECF /* AllEventsViewController.swift in Sources */,
+				65DEC5B727A992E700035E48 /* AllEventsViewModel.swift in Sources */,
 				658DC96D27A57C010068DECF /* AppDelegate.swift in Sources */,
 				65B2C33F27A8C13900D6D134 /* CheckInViewController.swift in Sources */,
 				65B2C34327A8DA0A00D6D134 /* CheckInViewModel.swift in Sources */,

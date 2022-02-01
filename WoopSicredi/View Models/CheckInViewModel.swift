@@ -1,14 +1,5 @@
 import Foundation
 class CheckInViewModel {
-    private var apiService: APIService!
-    
-    init() {
-        apiService = APIService.shared
-    }
-    
-    func postCheckIn(with checkIn: CheckIn) -> Bool {
-        return apiService.postCheckIn(with: checkIn)
-    }
     
     func validateTextFields(_ name: String, _ email: String) -> Bool{
         if (!name.isEmpty || !email.isEmpty) &&

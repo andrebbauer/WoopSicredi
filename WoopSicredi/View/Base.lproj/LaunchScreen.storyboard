@@ -16,9 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="destaque" translatesAutoresizingMaskIntoConstraints="NO" id="oeH-xE-0l8">
-                                <rect key="frame" x="87" y="237" width="240" height="422"/>
-                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="kkC-Cf-Cwb">
                                 <rect key="frame" x="20" y="504" width="374" height="52"/>
                                 <subviews>
@@ -36,14 +33,20 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="destaque" translatesAutoresizingMaskIntoConstraints="NO" id="oeH-xE-0l8">
+                                <rect key="frame" x="87" y="178" width="240" height="448"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="oeH-xE-0l8" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="39h-LB-lfz"/>
+                            <constraint firstItem="oeH-xE-0l8" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-46" id="39h-LB-lfz"/>
+                            <constraint firstItem="oeH-xE-0l8" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6Oy-mY-wSE"/>
+                            <constraint firstItem="oeH-xE-0l8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="134" id="I9w-PL-XE4"/>
                             <constraint firstItem="kkC-Cf-Cwb" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="460" id="P0f-jI-Udr"/>
+                            <constraint firstItem="kkC-Cf-Cwb" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="T5j-Je-Cbx"/>
+                            <constraint firstItem="oeH-xE-0l8" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-46" id="Vd1-c5-D3L"/>
                             <constraint firstItem="oeH-xE-0l8" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="d2J-jC-B0R"/>
-                            <constraint firstItem="oeH-xE-0l8" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="193" id="jTi-bK-DBf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kkC-Cf-Cwb" secondAttribute="trailing" constant="20" id="riq-nW-2Qr"/>
                             <constraint firstItem="oeH-xE-0l8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="87" id="u50-L2-ucO"/>
                             <constraint firstItem="kkC-Cf-Cwb" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="veK-5m-qOs"/>

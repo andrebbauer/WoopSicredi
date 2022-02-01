@@ -8,26 +8,14 @@ class CheckInViewController: UIViewController {
     
     var eventId: String?
     let checkInViewModel = CheckInViewModel()
+    let apiService = APIService.shared
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: .large)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameTextField.becomeFirstResponder()
         
-        // ui small details
-        doneBarButton.isEnabled = false
-        nameTextField.layer.borderWidth = 1.0
-        nameTextField.layer.borderColor = UIColor.secondaryLabel.cgColor
-        nameTextField.layer.cornerRadius = 8.0
-        self.nameTextField.delegate = self
-        emailTextField.layer.borderWidth = 1.0
-        emailTextField.layer.borderColor = UIColor.secondaryLabel.cgColor
-        emailTextField.layer.cornerRadius = 8.0
-        self.emailTextField.delegate = self
-        //activity indicator
-        activityIndicator.alpha = 1.0
-        view.addSubview(activityIndicator)
-        activityIndicator.center = view.center
+        uiDetails()
+        delegateTextFields()
         
     }
     
@@ -35,42 +23,78 @@ class CheckInViewController: UIViewController {
         // validates if user has inserted name and valid email
         if checkInViewModel.validateTextFields(nameTextField.text!, emailTextField.text!) {
             if let eventId = eventId {
-                activityIndicator.startAnimating()
-                
-                let checkIn = CheckIn(eventId, nameTextField.text!, emailTextField.text!)
-                let successInPost = checkInViewModel.postCheckIn(with: checkIn)
-                
-                activityIndicator.stopAnimating()
+                let successInPost = attemptCheckIn(for: eventId)
                 // if post request was sucessful presents success alert, else something went wrong alert
-                if successInPost {
-                    let alert = UIAlertController(title: "Great", message: "You just checked in!", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(
-                        title: "OK",
-                        style: .default,
-                        handler: { action in
-                            self.navigationController?.popViewController(animated: true)
-                        }))
-                    self.present(alert, animated: true, completion: nil)
-                } else {
-                    let alert = UIAlertController(title: "Something went wrong...", message: "Could not checked you in.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(
-                        title: "OK",
-                        style: .default,
-                        handler: { action in
-                            self.navigationController?.popViewController(animated: true)
-                        }))
-                    self.present(alert, animated: true, completion: nil)                }
+                successInPost ? presentSuccessAlert() : presentSomethingWentWrongAlert()
             }
         // if inputs aren't valid, alert invalid inputs
         } else {
-            let alert = UIAlertController(title: "Invalid inputs", message: "Check your text fields. You should type a  name and a valid e-mail.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(
-                title: "OK",
-                style: .default,
-                handler: { action in
-                }))
-            self.present(alert, animated: true, completion: nil)
+            presentInvalidInputsAlert()
         }
+    }
+    
+    func presentSuccessAlert() {
+        let alert = UIAlertController(title: "Great", message: "You just checked in!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(
+            title: "OK",
+            style: .default,
+            handler: { action in
+                self.navigationController?.popViewController(animated: true)
+            }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func presentSomethingWentWrongAlert() {
+        let alert = UIAlertController(title: "Something went wrong...", message: "Could not checked you in.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(
+            title: "OK",
+            style: .default,
+            handler: { action in
+                self.navigationController?.popViewController(animated: true)
+            }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func presentInvalidInputsAlert() {
+        let alert = UIAlertController(title: "Invalid inputs", message: "Check your text fields. You should type a  name and a valid e-mail.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(
+            title: "OK",
+            style: .default,
+            handler: { action in
+            }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func attemptCheckIn(for eventId: String) -> Bool {
+        activityIndicator.startAnimating()
+        
+        let checkIn = CheckIn(eventId, nameTextField.text!, emailTextField.text!)
+        let successInPost = apiService.postCheckIn(with: checkIn)
+        
+        activityIndicator.stopAnimating()
+        
+        return successInPost
+    }
+    
+    func uiDetails() {
+        nameTextField.becomeFirstResponder()
+        emailTextField.setValue(false, forKeyPath: "inputDelegate.returnKeyEnabled")
+        doneBarButton.isEnabled = false
+        nameTextField.layer.borderWidth = 1.0
+        nameTextField.layer.borderColor = UIColor.secondaryLabel.cgColor
+        nameTextField.layer.cornerRadius = 8.0
+        emailTextField.layer.borderWidth = 1.0
+        emailTextField.layer.borderColor = UIColor.secondaryLabel.cgColor
+        emailTextField.layer.cornerRadius = 8.0
+        //activity indicator
+        activityIndicator.alpha = 1.0
+        view.addSubview(activityIndicator)
+        activityIndicator.center = view.center
+    }
+    
+    func delegateTextFields() {
+        self.nameTextField.delegate = self
+        self.emailTextField.delegate = self
     }
 }
 
@@ -79,6 +103,9 @@ extension CheckInViewController: UITextFieldDelegate {
         if textField == self.nameTextField {
             emailTextField.becomeFirstResponder()
         } else if textField == self.emailTextField {
+            if textField.text!.isEmpty  || self.nameTextField.text!.isEmpty {
+                return false
+            }
             didTapDone()
         }
         return true
@@ -90,10 +117,11 @@ extension CheckInViewController: UITextFieldDelegate {
         }
         let newText = (oldText as NSString).replacingCharacters(in: range, with: string)
         if (textField == nameTextField && !newText.isEmpty && !emailTextField.text!.isEmpty) || (textField == emailTextField && !newText.isEmpty && !nameTextField.text!.isEmpty) {
-            doneBarButton.isEnabled = !newText.isEmpty
+            doneBarButton.isEnabled = true
+            
+        } else {
+            doneBarButton.isEnabled = false
         }
-        
         return true
     }
-    
 }
