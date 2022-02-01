@@ -23,7 +23,7 @@ class EventViewController: UIViewController {
         
         if let event = event {
             title = event.title
-            dateLabel.text = eventViewModel.convertDate(date: event.date)
+            dateLabel.text = eventViewModel.convertDate(event.date)
             descriptionLabel.text = event.description
             imageView.image = eventViewModel.getImageFromURL(event.image)
             longitudeLabel.text = String(event.longitude)
@@ -34,6 +34,22 @@ class EventViewController: UIViewController {
     
     @IBAction func didTapCheckInButton() {
         performSegue(withIdentifier: "CheckIn", sender: event?.id)
+    }
+    
+    @IBAction func didTapShareButton() {
+        let text = """
+                   Hey, come meet me at this event!!
+                   \(event!.title)
+                   It starts at: \(eventViewModel.convertDate(event!.date))
+                   Location: \(event!.longitude), \(event!.latitude)
+                   """
+        
+        let activityViewController: UIActivityViewController = UIActivityViewController(activityItems: [text], applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        activityViewController.activityItemsConfiguration = [UIActivity.ActivityType.message] as? UIActivityItemsConfigurationReading
+        activityViewController.isModalInPresentation = true
+        
+        self.present(activityViewController, animated: true, completion: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

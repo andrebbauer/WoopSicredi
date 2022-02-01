@@ -32,22 +32,44 @@ class CheckInViewController: UIViewController {
     }
     
     @IBAction func didTapDone(){
-        if !emailTextField.text!.isEmpty && !nameTextField.text!.isEmpty {
+        // validates if user has inserted name and valid email
+        if checkInViewModel.validateTextFields(nameTextField.text!, emailTextField.text!) {
             if let eventId = eventId {
                 activityIndicator.startAnimating()
-                let checkIn = CheckIn(eventId, nameTextField.text!, emailTextField.text!)
-                checkInViewModel.postCheckIn(with: checkIn)
-                activityIndicator.stopAnimating()
                 
-                let alert = UIAlertController(title: "Great", message: "You just checked in!", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(
-                    title: "OK",
-                    style: .default,
-                    handler: { action in
-                        self.navigationController?.popViewController(animated: true)
-                    }))
-                self.present(alert, animated: true, completion: nil)
+                let checkIn = CheckIn(eventId, nameTextField.text!, emailTextField.text!)
+                let successInPost = checkInViewModel.postCheckIn(with: checkIn)
+                
+                activityIndicator.stopAnimating()
+                // if post request was sucessful presents success alert, else something went wrong alert
+                if successInPost {
+                    let alert = UIAlertController(title: "Great", message: "You just checked in!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(
+                        title: "OK",
+                        style: .default,
+                        handler: { action in
+                            self.navigationController?.popViewController(animated: true)
+                        }))
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    let alert = UIAlertController(title: "Something went wrong...", message: "Could not checked you in.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(
+                        title: "OK",
+                        style: .default,
+                        handler: { action in
+                            self.navigationController?.popViewController(animated: true)
+                        }))
+                    self.present(alert, animated: true, completion: nil)                }
             }
+        // if inputs aren't valid, alert invalid inputs
+        } else {
+            let alert = UIAlertController(title: "Invalid inputs", message: "Check your text fields. You should type a  name and a valid e-mail.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(
+                title: "OK",
+                style: .default,
+                handler: { action in
+                }))
+            self.present(alert, animated: true, completion: nil)
         }
     }
 }

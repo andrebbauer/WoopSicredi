@@ -1,10 +1,3 @@
-//
-//  EventViewModel.swift
-//  WoopSicredi
-//
-//  Created by André on 31/01/22.
-//
-
 import Foundation
 import UIKit
 
@@ -23,7 +16,7 @@ class EventViewModel {
         return self.events
     }
     
-    func convertDate(date: Double) -> String {
+    func convertDate(_ date: Double) -> String {
         let timestamp = Date(timeIntervalSince1970: date/1000)
         return DateFormatter.localizedString(from: timestamp, dateStyle: .medium, timeStyle: .short)
     }

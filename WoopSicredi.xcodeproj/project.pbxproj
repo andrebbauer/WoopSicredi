@@ -51,6 +51,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		65562BC927A8EC0400F20E4E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				658DC97527A57C050068DECF /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		658DC96027A57C010068DECF = {
 			isa = PBXGroup;
 			children = (
@@ -70,12 +78,12 @@
 		658DC96B27A57C010068DECF /* WoopSicredi */ = {
 			isa = PBXGroup;
 			children = (
-				658DC97527A57C050068DECF /* Assets.xcassets */,
 				658DC97A27A57C050068DECF /* Info.plist */,
 				65B2C33727A8929C00D6D134 /* API Service */,
 				65B2C33B27A893F100D6D134 /* Common */,
 				658DC98227A57C2F0068DECF /* Controllers */,
 				658DC98027A57C0D0068DECF /* Models */,
+				65562BC927A8EC0400F20E4E /* Resources */,
 				65B2C33A27A8939600D6D134 /* View */,
 				658DC98127A57C180068DECF /* View Models */,
 			);

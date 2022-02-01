@@ -31,12 +31,13 @@ class APIService {
         task.resume()
     }
     
-    func postCheckIn(with info: CheckIn) {
+    func postCheckIn(with checkIn: CheckIn) -> Bool{
+        var success = true
         let url = URL(string: apiPOSTURL)!
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        let data = try? JSONEncoder().encode(info)
+        let data = try? JSONEncoder().encode(checkIn)
         request.httpBody = data
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -44,18 +45,22 @@ class APIService {
                 let response = response as? HTTPURLResponse,
                 error == nil else {
                     print("Error", error ?? "Unknown error")
+                    success = false
                     return
             }
             
             guard (200 ... 299) ~= response.statusCode else {
                 print("StatusCode should be 2xx, but is \(response.statusCode)")
                 print("response = \(response)")
+                success = false
                 return
             }
             let responseString = String(data: data, encoding: .utf8)
             print("responseString = \(String(describing: responseString))")
         }
         task.resume()
+        
+        return success
     }
     
     func getImageFromURL(_ url: String) -> UIImage {
