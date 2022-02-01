@@ -3,7 +3,7 @@ import UIKit
 
 class APIService {
     let apiRequestURL = Bundle.main.object(forInfoDictionaryKey: "apiRequestURL") as! String
-    let apiPOSTURL = Bundle.main.object(forInfoDictionaryKey: "apiRequestURL") as! String
+    let apiPOSTURL = Bundle.main.object(forInfoDictionaryKey: "apiPOSTURL") as! String
     
     static var shared: APIService = {
         return APIService()
@@ -30,10 +30,32 @@ class APIService {
         }
         task.resume()
     }
-    // TODO: - Post
+    
     func postCheckIn(with info: CheckIn) {
-        // let url = URL(string: apiPOSTURL)!
+        let url = URL(string: apiPOSTURL)!
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let data = try? JSONEncoder().encode(info)
+        request.httpBody = data
         
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data,
+                let response = response as? HTTPURLResponse,
+                error == nil else {
+                    print("Error", error ?? "Unknown error")
+                    return
+            }
+            
+            guard (200 ... 299) ~= response.statusCode else {
+                print("StatusCode should be 2xx, but is \(response.statusCode)")
+                print("response = \(response)")
+                return
+            }
+            let responseString = String(data: data, encoding: .utf8)
+            print("responseString = \(String(describing: responseString))")
+        }
+        task.resume()
     }
     
     func getImageFromURL(_ url: String) -> UIImage {

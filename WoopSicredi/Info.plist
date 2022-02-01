@@ -22,7 +22,7 @@
 		</dict>
 	</dict>
 	<key>apiPOSTURL</key>
-	<string>https://5f5a8f24d44d640016169133.mockapi.io/api/checkin</string>
+	<string>https://woopsicredi.free.beeceptor.com</string>
 	<key>apiRequestURL</key>
 	<string>https://5f5a8f24d44d640016169133.mockapi.io/api/events</string>
 </dict>

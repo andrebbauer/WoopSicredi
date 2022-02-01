@@ -8,6 +8,7 @@ class CheckInViewController: UIViewController {
     
     var eventId: String?
     let checkInViewModel = CheckInViewModel()
+    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView.init(style: .large)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +24,21 @@ class CheckInViewController: UIViewController {
         emailTextField.layer.borderColor = UIColor.secondaryLabel.cgColor
         emailTextField.layer.cornerRadius = 8.0
         self.emailTextField.delegate = self
+        //activity indicator
+        activityIndicator.alpha = 1.0
+        view.addSubview(activityIndicator)
+        activityIndicator.center = view.center
         
     }
     
     @IBAction func didTapDone(){
         if !emailTextField.text!.isEmpty && !nameTextField.text!.isEmpty {
             if let eventId = eventId {
+                activityIndicator.startAnimating()
                 let checkIn = CheckIn(eventId, nameTextField.text!, emailTextField.text!)
                 checkInViewModel.postCheckIn(with: checkIn)
+                activityIndicator.stopAnimating()
+                
                 let alert = UIAlertController(title: "Great", message: "You just checked in!", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(
                     title: "OK",
