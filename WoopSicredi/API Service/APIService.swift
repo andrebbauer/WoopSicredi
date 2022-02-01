@@ -71,6 +71,6 @@ class APIService {
             image = UIImage(data: imageData as Data)
             return image!
         }
-        return UIImage(systemName: "hand.raised.slash.fill")!
+        return UIImage(named: "broken-1")!
     }
 }
