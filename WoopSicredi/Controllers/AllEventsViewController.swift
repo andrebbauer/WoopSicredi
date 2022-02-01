@@ -25,7 +25,7 @@ class AllEventsViewController: UITableViewController {
         activityIndicator.center = view.center
         activityIndicator.startAnimating()
         
-        APIService().fetchEvents { [weak self] (events) in
+        APIService.shared.fetchEvents { [weak self] (events) in
             self?.events = events
             DispatchQueue.main.async {
                 self?.activityIndicator.stopAnimating()

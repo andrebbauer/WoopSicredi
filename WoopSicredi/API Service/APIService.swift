@@ -5,6 +5,10 @@ class APIService {
     let apiRequestURL = Bundle.main.object(forInfoDictionaryKey: "apiRequestURL") as! String
     let apiPOSTURL = Bundle.main.object(forInfoDictionaryKey: "apiRequestURL") as! String
     
+    static var shared: APIService = {
+        return APIService()
+    }()
+    
     func fetchEvents(completionHandler: @escaping ([Event]) -> Void) {
         let url = URL(string: apiRequestURL)!
         let task = URLSession.shared.dataTask(with: url) {
@@ -27,19 +31,19 @@ class APIService {
         task.resume()
     }
     // TODO: - Post
-    func postEvent() {
-        let url = URL(string: apiPOSTURL)!
+    func postCheckIn(with info: CheckIn) {
+        // let url = URL(string: apiPOSTURL)!
         
     }
     
     func getImageFromURL(_ url: String) -> UIImage {
         var image: UIImage?
-
+        
         let nsurl = NSURL(string: url)! as URL
         if let imageData: NSData = NSData(contentsOf: nsurl) {
             image = UIImage(data: imageData as Data)
             return image!
         }
-        return UIImage(systemName: "heart.fill")!
+        return UIImage(systemName: "hand.raised.slash.fill")!
     }
 }

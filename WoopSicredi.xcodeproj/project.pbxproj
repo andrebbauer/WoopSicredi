@@ -17,6 +17,9 @@
 		658DC97927A57C050068DECF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 658DC97727A57C050068DECF /* LaunchScreen.storyboard */; };
 		658DC98427A57C490068DECF /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 658DC98327A57C490068DECF /* Event.swift */; };
 		65B2C33927A892F000D6D134 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2C33827A892F000D6D134 /* EventViewModel.swift */; };
+		65B2C33F27A8C13900D6D134 /* CheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2C33E27A8C13900D6D134 /* CheckInViewController.swift */; };
+		65B2C34127A8CE0500D6D134 /* CheckIn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2C34027A8CE0500D6D134 /* CheckIn.swift */; };
+		65B2C34327A8DA0A00D6D134 /* CheckInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B2C34227A8DA0A00D6D134 /* CheckInViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		658DC97A27A57C050068DECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		658DC98327A57C490068DECF /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		65B2C33827A892F000D6D134 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
+		65B2C33E27A8C13900D6D134 /* CheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInViewController.swift; sourceTree = "<group>"; };
+		65B2C34027A8CE0500D6D134 /* CheckIn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIn.swift; sourceTree = "<group>"; };
+		65B2C34227A8DA0A00D6D134 /* CheckInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				658DC98327A57C490068DECF /* Event.swift */,
+				65B2C34027A8CE0500D6D134 /* CheckIn.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -88,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				65B2C33827A892F000D6D134 /* EventViewModel.swift */,
+				65B2C34227A8DA0A00D6D134 /* CheckInViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -97,6 +105,7 @@
 			children = (
 				658DC97027A57C010068DECF /* AllEventsViewController.swift */,
 				652CB4D427A7285900594C10 /* EventViewController.swift */,
+				65B2C33E27A8C13900D6D134 /* CheckInViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -201,6 +210,9 @@
 				658DC98427A57C490068DECF /* Event.swift in Sources */,
 				658DC97127A57C010068DECF /* AllEventsViewController.swift in Sources */,
 				658DC96D27A57C010068DECF /* AppDelegate.swift in Sources */,
+				65B2C33F27A8C13900D6D134 /* CheckInViewController.swift in Sources */,
+				65B2C34327A8DA0A00D6D134 /* CheckInViewModel.swift in Sources */,
+				65B2C34127A8CE0500D6D134 /* CheckIn.swift in Sources */,
 				652CB4D327A70B1500594C10 /* APIService.swift in Sources */,
 				652CB4D527A7285A00594C10 /* EventViewController.swift in Sources */,
 				65B2C33927A892F000D6D134 /* EventViewModel.swift in Sources */,
